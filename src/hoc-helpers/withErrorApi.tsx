@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../hooks/redux-hooks.ts";
-import { PeopleType } from "../features/getPeople/getPeopleSlice.ts";
+import { PeopleType } from "../store/features/getPeople/getPeopleSlice.ts";
 import ErrorMessage from "../components/ErrorMessage";
 
 type AppProps = {

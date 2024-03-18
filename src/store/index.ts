@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import getPeopleReducer from "../features/getPeople";
+import getPeopleReducer from "./features/getPeople";
 
 const store = configureStore({
   reducer: {

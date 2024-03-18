@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { API_PEOPLE } from "../../constants/api.ts";
+import { API_PEOPLE } from "../../../constants/api.ts";
 import axios from "axios";
-import { PeopleT } from "../../types/people.ts";
-import { getImgPeople, getPeopleId } from "../../services/gerPeopleData.ts";
+import { PeopleT } from "../../../types/people.ts";
+import { getImgPeople, getPeopleId } from "../../../services/gerPeopleData.ts";
 
 // createAsyncThunk
 export const getPeople = createAsyncThunk("people", async () => {

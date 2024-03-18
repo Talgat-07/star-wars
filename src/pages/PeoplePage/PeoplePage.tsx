@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../hooks/redux-hooks.ts";
 import {
   getPeople,
   PeopleType,
-} from "../../features/getPeople/getPeopleSlice.ts";
+} from "../../store/features/getPeople/getPeopleSlice.ts";
 import PeopleList from "../../components/PeoplePage/PeopleList";
 
 type AppProps = {

@@ -7,6 +7,7 @@ import PeopleList from "@components/PeoplePage/PeopleList";
 import { useAppDispatch } from "@hooks/redux-hooks.ts";
 import { API_PEOPLE } from "@constants/api.ts";
 import { useQueryParams } from "@hooks/useQueryParams.ts";
+import PeoplePagination from "@components/PeoplePage/PeoplePagination";
 
 type AppProps = {
   people: Array<PeopleType>;
@@ -21,7 +22,7 @@ const PeoplePage: FC<AppProps> = ({ people }) => {
 
   return (
     <>
-      <h1 className="header__text">People</h1>
+      <PeoplePagination count={num} />
       <PeopleList people={people} />
     </>
   );

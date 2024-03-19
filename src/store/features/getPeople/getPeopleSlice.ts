@@ -1,13 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getImgPeople, getPeopleId } from "@services/gerPeopleData.ts";
-import { PeopleT } from "types/people.ts";
+import { GerPeopleType } from "types/gerPeople.ts";
 
 // createAsyncThunk
 export const getPeople = createAsyncThunk("people", async (url: string) => {
   const res = await axios(url);
-  console.log(res.data);
-  return res.data.results;
+  return {
+    people: res.data.results,
+    next: res.data.next,
+    previous: res.data.previous,
+  };
 });
 
 // initialState type
@@ -19,11 +22,15 @@ export type PeopleType = {
 
 type InitialStateType = {
   people: Array<PeopleType> | false;
+  previous: string | null;
+  next: string | null;
 };
 
 // initialState
 const initialState: InitialStateType = {
   people: [],
+  previous: null,
+  next: null,
 };
 
 // Slice
@@ -38,8 +45,8 @@ const getPeopleSlice = createSlice({
     //fulfilled
     builder.addCase(
       getPeople.fulfilled,
-      (state, action: PayloadAction<Array<PeopleT>>) => {
-        state.people = action.payload.map((el) => {
+      (state, action: PayloadAction<GerPeopleType>) => {
+        state.people = action.payload.people.map((el) => {
           const id = getPeopleId(el.url);
           const img: string = getImgPeople(id);
           return {
@@ -48,6 +55,8 @@ const getPeopleSlice = createSlice({
             img,
           };
         });
+        state.next = action.payload.next;
+        state.previous = action.payload.previous;
       },
     );
 

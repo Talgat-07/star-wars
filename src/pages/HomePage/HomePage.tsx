@@ -25,7 +25,7 @@ const HomePage = () => {
       <h1 className="header__text">Choose your side</h1>
       <div className={styles.content}>
         {cards.map((el) => (
-          <HomeContent card={el} />
+          <HomeContent key={el.text} card={el} />
         ))}
       </div>
     </>

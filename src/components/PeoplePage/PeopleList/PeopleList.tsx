@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./PeopleList.module.sass";
-import { PeopleType } from "../../../store/features/getPeople/getPeopleSlice.ts";
+import { PeopleType } from "@store/features/getPeople/getPeopleSlice.ts";
 
 type AppProps = {
   people: Array<PeopleType>;

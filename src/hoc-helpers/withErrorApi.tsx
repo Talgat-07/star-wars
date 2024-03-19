@@ -1,7 +1,7 @@
 import React from "react";
-import { useAppSelector } from "../hooks/redux-hooks.ts";
-import { PeopleType } from "../store/features/getPeople/getPeopleSlice.ts";
-import ErrorMessage from "../components/ErrorMessage";
+import { useAppSelector } from "@hooks/redux-hooks.ts";
+import { PeopleType } from "@store/features/getPeople/getPeopleSlice.ts";
+import ErrorMessage from "@components/ErrorMessage";
 
 type AppProps = {
   people: Array<PeopleType>;

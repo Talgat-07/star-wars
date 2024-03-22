@@ -2,7 +2,6 @@ import { FC, useEffect } from "react";
 import { getPeople } from "@store/features/getPeople/getPeopleSlice.ts";
 import PeopleList from "@components/PeoplePage/PeopleList";
 import { useAppDispatch, useAppSelector } from "@hooks/redux-hooks.ts";
-import { API_PEOPLE } from "@constants/api.ts";
 import { useQueryParams } from "@hooks/useQueryParams.ts";
 import PeoplePagination from "@components/PeoplePage/PeoplePagination";
 import { withErrorApi } from "@hoc-helpers/withErrorApi.tsx";
@@ -13,12 +12,17 @@ let st = false;
 const PeoplePage: FC = () => {
   const dispatch = useAppDispatch();
   const num: string = useQueryParams();
-  console.log(useUrlCategory());
+  const category: string = useUrlCategory();
   st = useAppSelector((state) => state.getPeople.status);
 
   useEffect(() => {
-    dispatch(getPeople(API_PEOPLE + num));
-  }, [dispatch, num]);
+    dispatch(
+      getPeople({
+        category: category,
+        num: num,
+      }),
+    );
+  }, [dispatch, num, category]);
 
   const people = useAppSelector((state) => state.getPeople.people);
 

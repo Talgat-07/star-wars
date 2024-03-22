@@ -13,10 +13,7 @@ const CategoryPage = () => {
     dispatch(getCategory(HTTPS + SWAPI_ROOT));
   }, [dispatch]);
   st = useAppSelector((state) => state.getCategory.status);
-  const { category, categoryData } = useAppSelector(
-    (state) => state.getCategory,
-  );
-  console.log(categoryData, category);
+  const { categoryData } = useAppSelector((state) => state.getCategory);
 
   return (
     <>

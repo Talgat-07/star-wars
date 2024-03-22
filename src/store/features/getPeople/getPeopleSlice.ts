@@ -2,16 +2,21 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getImgPeople, getPeopleId } from "@services/gerPeopleData.ts";
 import { GerPeopleType } from "types/gerPeople.ts";
+import { HTTPS, SWAPI_PAGE, SWAPI_ROOT } from "@constants/api.ts";
 
 // createAsyncThunk
-export const getPeople = createAsyncThunk("people", async (url: string) => {
-  const res = await axios(url);
-  return {
-    people: res.data.results,
-    next: res.data.next,
-    previous: res.data.previous,
-  };
-});
+export const getPeople = createAsyncThunk(
+  "people",
+  async ({ category, num }: { category: string; num: string }) => {
+    const res = await axios(HTTPS + SWAPI_ROOT + category + SWAPI_PAGE + num);
+    return {
+      people: res.data.results,
+      category: category,
+      next: res.data.next,
+      previous: res.data.previous,
+    };
+  },
+);
 
 // initialState type
 export type PeopleType = {
@@ -48,7 +53,7 @@ const getPeopleSlice = createSlice({
       (state, action: PayloadAction<GerPeopleType>) => {
         state.people = action.payload.people.map((el) => {
           const id = getPeopleId(el.url);
-          const img: string = getImgPeople(id);
+          const img: string = getImgPeople(id, action.payload.category);
           return {
             id,
             name: el.name,

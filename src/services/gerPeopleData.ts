@@ -1,16 +1,12 @@
-import {
-  GUIDE_IMG_EXTENSION,
-  HTTPS,
-  SWAPI_PEOPLE,
-  SWAPI_ROOT,
-  URL_IMG_PERSON,
-} from "@constants/api.ts";
+import { GUIDE_IMG_EXTENSION, GUIDE_ROOT, HTTPS } from "@constants/api.ts";
 
-const getId = (url: string, category: string) => {
-  return url.replace(HTTPS + SWAPI_ROOT + category, "").replace(/\//g, "");
+const getId = (url: string) => {
+  return url.replace(/[^\d*]/g, "");
 };
 
-export const getPeopleId = (url: string): string => getId(url, SWAPI_PEOPLE);
+export const getPeopleId = (url: string): string => getId(url);
 
-export const getImgPeople = (id: string): string =>
-  `${URL_IMG_PERSON}/${id + GUIDE_IMG_EXTENSION}`;
+export const getImgPeople = (id: string, category: string): string => {
+  const c: string = category === "people" ? "characters" : category;
+  return `${HTTPS + GUIDE_ROOT + c}/${id + GUIDE_IMG_EXTENSION}`;
+};

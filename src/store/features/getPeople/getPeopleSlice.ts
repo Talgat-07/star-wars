@@ -18,12 +18,14 @@ export type PeopleType = {
   id: string;
   img: string;
   name: string;
+  url: string;
 };
 
 type InitialStateType = {
   people: Array<PeopleType> | false;
   previous: string | null;
   next: string | null;
+  status: boolean;
 };
 
 // initialState
@@ -31,6 +33,7 @@ const initialState: InitialStateType = {
   people: [],
   previous: null,
   next: null,
+  status: false,
 };
 
 // Slice
@@ -39,9 +42,6 @@ const getPeopleSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    //pending
-    builder.addCase(getPeople.pending, () => {});
-
     //fulfilled
     builder.addCase(
       getPeople.fulfilled,
@@ -53,16 +53,18 @@ const getPeopleSlice = createSlice({
             id,
             name: el.name,
             img,
+            url: "#",
           };
         });
         state.next = action.payload.next;
         state.previous = action.payload.previous;
+        state.status = false;
       },
     );
 
     //rejected
     builder.addCase(getPeople.rejected, (state) => {
-      state.people = false;
+      state.status = true;
     });
   },
 });

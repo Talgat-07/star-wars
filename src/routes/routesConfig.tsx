@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import HomePage from "@pages/HomePage";
 import PeoplePage from "@pages/PeoplePage";
 import NotFoundPage from "@pages/NotFoundPage";
+import CategoryPage from "@pages/CategoryPage";
 
 type RouteType = {
   path: string;
@@ -20,6 +21,10 @@ export const routes: Array<RouteType> = [
   {
     path: "not-found",
     element: <NotFoundPage />,
+  },
+  {
+    path: "category",
+    element: <CategoryPage />,
   },
   {
     path: "*",

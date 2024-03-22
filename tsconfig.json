@@ -22,7 +22,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@constants/*": ["constants/*"],
-      "@hocHelpers/*": ["hoc-helpers/*"],
+      "@hoc-helpers/*": ["hoc-helpers/*"],
       "@hooks/*": ["hooks/*"],
       "@pages/*": ["pages/*"],
       "@routes/*": ["routes/*"],

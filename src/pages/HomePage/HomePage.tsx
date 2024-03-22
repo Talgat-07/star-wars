@@ -1,4 +1,4 @@
-import HomeContent from "@components/HomePage";
+import HomeContent from "@components/HomePage/HomeContent";
 import { Cards } from "types/cards.ts";
 import styles from "./HomePage.module.sass";
 

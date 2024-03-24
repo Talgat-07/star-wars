@@ -6,6 +6,7 @@ type AppType = {
   id: string;
 };
 export const getFireStoreFavorite = async ({ c, id }: AppType) => {
+  console.log(db);
   const docRef = doc(db, c, id);
   const docSnap = await getDoc(docRef);
 

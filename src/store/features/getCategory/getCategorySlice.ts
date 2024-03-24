@@ -48,6 +48,7 @@ const getCategorySlice = createSlice({
           id: `${Math.floor(Math.random() * (10000 - 1))}`,
           name: (el = el === "people" ? "character" : el),
           img: `https://starwars-visualguide.com/assets/img/categories/${el}.jpg`,
+          ifFavorite: false,
         }));
       },
     );

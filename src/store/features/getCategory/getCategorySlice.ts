@@ -49,6 +49,7 @@ const getCategorySlice = createSlice({
           name: (el = el === "people" ? "character" : el),
           img: `https://starwars-visualguide.com/assets/img/categories/${el}.jpg`,
           ifFavorite: false,
+          category: "",
         }));
       },
     );

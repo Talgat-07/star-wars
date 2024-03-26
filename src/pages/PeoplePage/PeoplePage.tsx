@@ -4,16 +4,12 @@ import PeopleList from "@components/PeoplePage/PeopleList";
 import { useAppDispatch, useAppSelector } from "@hooks/redux-hooks.ts";
 import { useQueryParams } from "@hooks/useQueryParams.ts";
 import PeoplePagination from "@components/PeoplePage/PeoplePagination";
-import { withErrorApi } from "@hoc-helpers/withErrorApi.tsx";
 import { useUrlCategory } from "@services/getUrlCategory.ts";
-
-let st = false;
 
 const PeoplePage: FC = () => {
   const dispatch = useAppDispatch();
   const num: string = useQueryParams();
   const category: string = useUrlCategory();
-  st = useAppSelector((state) => state.getPeople.status);
 
   useEffect(() => {
     dispatch(
@@ -34,4 +30,4 @@ const PeoplePage: FC = () => {
   );
 };
 
-export default withErrorApi(PeoplePage, st);
+export default PeoplePage;

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PeopleType } from "@store/features/getPeople/getPeopleSlice.ts";
 import { getDocs, collection, DocumentData } from "firebase/firestore";
 import { db } from "../../../firebase.ts";
@@ -42,7 +42,17 @@ const initialState: AppInitialStateType = {
 const getFavoriteSlice = createSlice({
   name: "getFavorite",
   initialState,
-  reducers: {},
+  reducers: {
+    addFavoriteState: (state, action) => {
+      state.people.push(action.payload);
+    },
+    removeFavoriteState: (state, { payload }: PayloadAction<PeopleType>) => {
+      state.people = state.people.filter((el) => {
+        const r = el.id === payload.id && el.category === payload.category;
+        return !r;
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getFavorite.fulfilled, (state, action) => {
       state.people = action.payload;
@@ -50,3 +60,5 @@ const getFavoriteSlice = createSlice({
   },
 });
 export default getFavoriteSlice.reducer;
+export const { addFavoriteState, removeFavoriteState } =
+  getFavoriteSlice.actions;

@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import getPeopleReducer from "./features/getPeople";
 import getCategoryReducer from "./features/getCategory";
 import getFavoriteReducer from "./features/getFavorite";
+import getPeopleReducer from "./features/getPeople";
 
 const store = configureStore({
   reducer: {
-    getPeople: getPeopleReducer,
     getCategory: getCategoryReducer,
     getFavorite: getFavoriteReducer,
+    getPeople: getPeopleReducer,
   },
 });
 

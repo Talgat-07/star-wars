@@ -5,7 +5,11 @@ import {
   PeopleType,
 } from "@store/features/getPeople/getPeopleSlice.ts";
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
-import { useAppDispatch } from "@hooks/redux-hooks.ts";
+import { useAppDispatch, useAppSelector } from "@hooks/redux-hooks.ts";
+import {
+  addFavoriteState,
+  removeFavoriteState,
+} from "@store/features/getFavorite/getFavoriteSlice.ts";
 
 type AppProps = {
   people: Array<PeopleType>;
@@ -13,6 +17,17 @@ type AppProps = {
 
 const PeopleList: FC<AppProps> = ({ people }) => {
   const dispatch = useAppDispatch();
+  const people2 = useAppSelector((state) => state.getPeople.people);
+
+  const handleFavoriteToggle = (id: string) => {
+    dispatch(favoriteFunc(id));
+    const item = people2.find((el) => el.id === id);
+    if (item) {
+      item.ifFavorite
+        ? dispatch(removeFavoriteState(item))
+        : dispatch(addFavoriteState(item));
+    }
+  };
 
   return (
     <ul className={styles.list__container}>
@@ -21,13 +36,13 @@ const PeopleList: FC<AppProps> = ({ people }) => {
           {ifFavorite ? (
             <IconHeartFilled
               color="red"
-              onClick={() => dispatch(favoriteFunc(id))}
+              onClick={() => handleFavoriteToggle(id)}
               size={40}
             />
           ) : (
             <IconHeart
               color="red"
-              onClick={() => dispatch(favoriteFunc(id))}
+              onClick={() => handleFavoriteToggle(id)}
               size={40}
             />
           )}

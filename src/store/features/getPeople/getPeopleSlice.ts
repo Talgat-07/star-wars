@@ -79,7 +79,6 @@ const getPeopleSlice = createSlice({
         }
       });
     },
-    unFavoriteFunc: () => {},
   },
   extraReducers: (builder) => {
     //fulfilled

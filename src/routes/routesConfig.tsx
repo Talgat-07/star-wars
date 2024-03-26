@@ -3,6 +3,7 @@ import HomePage from "@pages/HomePage";
 import PeoplePage from "@pages/PeoplePage";
 import NotFoundPage from "@pages/NotFoundPage";
 import CategoryPage from "@pages/CategoryPage";
+import FavoritePage from "@pages/FavoritePage";
 
 type RouteType = {
   path: string;
@@ -45,6 +46,10 @@ export const routes: Array<RouteType> = [
   {
     path: "category",
     element: <CategoryPage />,
+  },
+  {
+    path: "favorite",
+    element: <FavoritePage />,
   },
   {
     path: "*",
